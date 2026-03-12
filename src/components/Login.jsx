@@ -8,6 +8,7 @@ const Login = () => {
 
   const [emailId,setemailId]= useState("sethuselvi@gmail.com")
   const [password,setpassword] =useState("Selvi1998@")
+  const [error,seterror] = useState("");
   const dispatch = useDispatch();
   const navigator = useNavigate();
 
@@ -18,7 +19,7 @@ const Login = () => {
     dispatch(addUser(res.data))
     return navigator("/")
   }catch(err){
-      console.error(err);
+      seterror(err?.response?.data)
     }
   }
   return (
@@ -34,6 +35,7 @@ const Login = () => {
   <input type="password" className="input" value={password} onChange={(e)=>{setpassword(e.target.value)}}/>
 </fieldset>
    </div>
+   <p className="text-red-500">{error}</p>
     <div className="card-actions justify-center  my-4">
       <button className="btn btn-primary" onClick={handleLogin}>Login</button>
     </div>
