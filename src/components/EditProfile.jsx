@@ -19,13 +19,14 @@ const EditProfile = ({user}) => {
   const navigator = useNavigate();
 
 
-  const handleLogin = async ()=>{
+  const saveProfile = async ()=>{
+    //Clear error after updating correct details
+    seterror("")
     try{
-    const res = await axios.post(BASE_URL + "/login",{emailId,password},{withCredentials:true})
-    dispatch(addUser(res.data))
-    return navigator("/")
+    const res = await axios.patch(BASE_URL + "/profile/edit",{firstName,lastName,photoUrl,age,gender,about},{withCredentials:true})
+    dispatch(addUser(res?.data?.data))
   }catch(err){
-      seterror(err?.response?.data)
+      seterror(err.response.data)
     }
   }
   return (
@@ -52,7 +53,7 @@ const EditProfile = ({user}) => {
    </div>
    <p className="text-red-500">{error}</p>
     <div className="card-actions justify-center  my-4">
-      <button className="btn btn-primary" >Save Profile</button>
+      <button className="btn btn-primary" onClick={saveProfile}>Save Profile</button>
     </div>
   </div>
 </div>
