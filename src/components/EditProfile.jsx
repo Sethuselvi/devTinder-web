@@ -5,13 +5,13 @@ import axios from 'axios'
 import {useNavigate} from 'react-router'
 import { BASE_URL } from '../utils/constants'
 
-const EditProfile = () => {
-    const [firstName,setfirstName]= useState("")
-  const [lastName,setlastName] =useState("")
-  const [photoUrl,setphotoUrl] =useState("")
-  const [age,setage] =useState("")
-  const [gender,setgender] =useState("")
-  const [about,setabout] =useState("")
+const EditProfile = ({user}) => {
+    const [firstName,setfirstName]= useState(user.firstName)
+  const [lastName,setlastName] =useState(user.lastName)
+  const [photoUrl,setphotoUrl] =useState(user.photoUrl)
+  const [age,setage] =useState(user.age)
+  const [gender,setgender] =useState(user.gender)
+  const [about,setabout] =useState(user.about)
 
   const [error,seterror] = useState("");
   const dispatch = useDispatch();
@@ -37,15 +37,15 @@ const EditProfile = () => {
   <legend className="fieldset-legend">First Name</legend>
   <input type="text" className="input" value={firstName} onChange={(e)=>{setfirstName(e.target.value)}}/>
   <legend className="fieldset-legend">Last Name</legend>
-  <input type="password" className="input" value={lastName} onChange={(e)=>{setlastName(e.target.value)}}/>
+  <input type="text" className="input" value={lastName} onChange={(e)=>{setlastName(e.target.value)}}/>
   <legend className="fieldset-legend">Photo URL</legend>
-  <input type="password" className="input" value={photoUrl} onChange={(e)=>{setphotoUrl(e.target.value)}}/>
+  <input type="text" className="input" value={photoUrl} onChange={(e)=>{setphotoUrl(e.target.value)}}/>
   <legend className="fieldset-legend">Age</legend>
-  <input type="password" className="input" value={age} onChange={(e)=>{setage(e.target.value)}}/>
+  <input type="text" className="input" value={age} onChange={(e)=>{setage(e.target.value)}}/>
   <legend className="fieldset-legend">Gender</legend>
-  <input type="password" className="input" value={gender} onChange={(e)=>{setgender(e.target.value)}}/>
+  <input type="text" className="input" value={gender} onChange={(e)=>{setgender(e.target.value)}}/>
   <legend className="fieldset-legend">About</legend>
-  <input type="password" className="input" value={gender} onChange={(e)=>{setabout(e.target.value)}}/>
+  <input type="text" className="input" value={about} onChange={(e)=>{setabout(e.target.value)}}/>
 </fieldset>
    </div>
    <p className="text-red-500">{error}</p>
