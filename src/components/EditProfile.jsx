@@ -2,9 +2,9 @@ import { useState, } from 'react'
 import {useDispatch} from 'react-redux'
 import { addUser } from '../utils/userSlice'
 import axios from 'axios'
-import {useNavigate} from 'react-router'
 import { BASE_URL } from '../utils/constants'
 import UserCard from './UserCard'
+import{Link} from 'react-router'
 
 const EditProfile = ({user}) => {
     const [firstName,setfirstName]= useState(user.firstName)
@@ -14,6 +14,8 @@ const EditProfile = ({user}) => {
   const [gender,setgender] =useState(user?.gender)
   const [about,setabout] =useState(user?.about)
   const [toast,settoast] = useState(false)
+  const [dropdownOpen,setdropdownOpen] = useState(false)
+  
 
   const [error,seterror] = useState("");
   const dispatch = useDispatch();
@@ -54,9 +56,16 @@ const EditProfile = ({user}) => {
   <legend className="fieldset-legend">Age</legend>
   <input type="text" className="input" value={age} onChange={(e)=>{setage(e.target.value)}}/>
   <legend className="fieldset-legend">Gender</legend>
-  <input type="text" className="input" value={gender} onChange={(e)=>{setgender(e.target.value)}}/>
+  {/*<input type="text" className="input" value={gender} onChange={(e)=>{setgender(e.target.value)}}/> */}
+<div className="dropdown">
+   <div tabIndex={0} role="button" className="btn m-1 w-full" onClick={()=>setdropdownOpen(!dropdownOpen)}>{gender}</div>
+  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+   <li value="male" onClick={()=>{setgender("male");setdropdownOpen(false)}}><Link>Male</Link></li>
+    <li  value="female" onClick={()=>{setgender("female");setdropdownOpen(false)}}><Link>Female</Link></li>
+  </ul>
+</div>
   <legend className="fieldset-legend">About</legend>
-  <input type="text" className="input" value={about} onChange={(e)=>{setabout(e.target.value)}}/>
+  <textarea type="text" className="input" value={about} onChange={(e)=>{setabout(e.target.value)}}/>
 </fieldset>
    </div>
    <p className="text-red-500">{error}</p>
