@@ -13,10 +13,11 @@ const EditProfile = ({user}) => {
   const [age,setage] =useState(user?.age)
   const [gender,setgender] =useState(user?.gender)
   const [about,setabout] =useState(user?.about)
+  const [toast,settoast] = useState(false)
 
   const [error,seterror] = useState("");
   const dispatch = useDispatch();
-  const navigator = useNavigate();
+  
 
 
   const saveProfile = async ()=>{
@@ -24,12 +25,19 @@ const EditProfile = ({user}) => {
     seterror("")
     try{
     const res = await axios.patch(BASE_URL + "/profile/edit",{firstName,lastName,photoUrl,age,gender,about},{withCredentials:true})
+    //Updated the store with updated profile details
     dispatch(addUser(res?.data?.data))
+    settoast(true)
+    //Clearing toast after cetain interval
+    setTimeout(()=>{
+    settoast(false)
+    },3000)
   }catch(err){
       seterror(err.response.data)
     }
   }
   return (
+    <>
     <div className="flex justify-center my-10">
    <div className="flex justify-center mx-10">
       <div className="card card-border bg-base-300 w-96">
@@ -60,6 +68,12 @@ const EditProfile = ({user}) => {
     </div>
     <UserCard user={{firstName,lastName,photoUrl,age,gender,about}}/>
     </div>
+    {toast && <div className="toast toast-top toast-center">
+  <div className="alert alert-success">
+    <span>Profile saved successfully.</span>
+  </div>
+</div>}
+    </>
   )
 }
 
