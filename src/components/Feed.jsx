@@ -16,7 +16,7 @@ const Feed = () => {
     console.log(res)
 
     //Using feed slice
-    dispatch(addFeed(res?.data?.data))
+    dispatch(addFeed(res?.data?.users))
     }catch(err){
     console.error(err);
     }    
@@ -25,7 +25,8 @@ const Feed = () => {
     getFeed();
   },[])
   return (
-    <UserCard/>
+    feed &&
+    (<div class="flex justify-center my-10"><UserCard user={feed[0]}/></div>)
   )
 }
 
