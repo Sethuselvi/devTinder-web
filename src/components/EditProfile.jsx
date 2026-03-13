@@ -4,14 +4,15 @@ import { addUser } from '../utils/userSlice'
 import axios from 'axios'
 import {useNavigate} from 'react-router'
 import { BASE_URL } from '../utils/constants'
+import UserCard from './UserCard'
 
 const EditProfile = ({user}) => {
     const [firstName,setfirstName]= useState(user.firstName)
   const [lastName,setlastName] =useState(user.lastName)
-  const [photoUrl,setphotoUrl] =useState(user.photoUrl)
-  const [age,setage] =useState(user.age)
-  const [gender,setgender] =useState(user.gender)
-  const [about,setabout] =useState(user.about)
+  const [photoUrl,setphotoUrl] =useState(user?.photoUrl)
+  const [age,setage] =useState(user?.age)
+  const [gender,setgender] =useState(user?.gender)
+  const [about,setabout] =useState(user?.about)
 
   const [error,seterror] = useState("");
   const dispatch = useDispatch();
@@ -28,7 +29,8 @@ const EditProfile = ({user}) => {
     }
   }
   return (
-   <div className="flex justify-center my-10">
+    <div className="flex justify-center my-10">
+   <div className="flex justify-center mx-10">
       <div className="card card-border bg-base-300 w-96">
   <div className="card-body ">
     <h2 className="card-title justify-center">Edit Profile</h2>
@@ -54,6 +56,8 @@ const EditProfile = ({user}) => {
     </div>
   </div>
 </div>
+    </div>
+    <UserCard user={{firstName,lastName,photoUrl,age,gender,about}}/>
     </div>
   )
 }
