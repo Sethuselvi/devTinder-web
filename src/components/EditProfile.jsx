@@ -14,7 +14,7 @@ const EditProfile = ({user}) => {
   const [gender,setgender] =useState(user?.gender)
   const [about,setabout] =useState(user?.about)
   const [toast,settoast] = useState(false)
-  const [dropdownOpen,setdropdownOpen] = useState(false)
+  
   
 
   const [error,seterror] = useState("");
