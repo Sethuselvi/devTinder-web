@@ -56,7 +56,6 @@ const EditProfile = ({user}) => {
   <legend className="fieldset-legend">Age</legend>
   <input type="text" className="input" value={age} onChange={(e)=>{setage(e.target.value)}}/>
   <legend className="fieldset-legend">Gender</legend>
-  {/*<input type="text" className="input" value={gender} onChange={(e)=>{setgender(e.target.value)}}/> */}
 <div className="dropdown">
    <div tabIndex={0} role="button" className="btn m-1 w-full">{gender}</div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-full  p-2 shadow-sm">
