@@ -58,14 +58,14 @@ const EditProfile = ({user}) => {
   <legend className="fieldset-legend">Gender</legend>
   {/*<input type="text" className="input" value={gender} onChange={(e)=>{setgender(e.target.value)}}/> */}
 <div className="dropdown">
-   <div tabIndex={0} role="button" className="btn m-1 w-full" onClick={()=>setdropdownOpen(!dropdownOpen)}>{gender}</div>
-  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-   <li value="male" onClick={()=>{setgender("male");setdropdownOpen(false)}}><Link>Male</Link></li>
-    <li  value="female" onClick={()=>{setgender("female");setdropdownOpen(false)}}><Link>Female</Link></li>
+   <div tabIndex={0} role="button" className="btn m-1 w-full">{gender}</div>
+  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-full  p-2 shadow-sm">
+   <li className="hover:bg-gray-400 hover:text-black" value="male" onClick={(e)=>{setgender("male");e.target.blur()}}><Link>Male</Link></li>
+    <li className="hover:bg-gray-400 hover:text-black" value="female" onClick={(e)=>{setgender("female");e.target.blur()}}><Link>Female</Link></li>
   </ul>
 </div>
   <legend className="fieldset-legend">About</legend>
-  <textarea type="text" className="input" value={about} onChange={(e)=>{setabout(e.target.value)}}/>
+  <textarea type="text" className="input h-30" value={about} onChange={(e)=>{setabout(e.target.value)}}/>
 </fieldset>
    </div>
    <p className="text-red-500">{error}</p>
