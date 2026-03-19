@@ -48,7 +48,7 @@ const Login = () => {
   <legend className="fieldset-legend">Email ID</legend>
   <input type="text" className="input" value={emailId} onChange={(e)=>{setemailId(e.target.value)}}/>
   <legend className="fieldset-legend">Password</legend>
-  <input type="password" className="input" value={password} onChange={(e)=>{setpassword(e.target.value)}}/>
+  <input type="password" className="input" value={password} onChange={(e)=>{setpassword(e.target.value)}}  onKeyDown={isLogin?handleLogin:handleSignUp}/>
 </fieldset>
    </div>
    <p className="text-red-500">{error}</p>
