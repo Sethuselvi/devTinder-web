@@ -1,5 +1,3 @@
-//Use this URL to test production
-export const BASE_URL = '/api'
+//Use url based on development or production environment
+export const BASE_URL = location.hostname === "localhost" ? 'http://localhost:3000':'/api'
 
-//Use this url to test devlopment
-// export const BASE_URL = 'http://localhost:3000'
